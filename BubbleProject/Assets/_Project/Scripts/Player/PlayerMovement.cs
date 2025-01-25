@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
     /* Function that moves the player */
     private void move()
     {
-        this.physics.velocity = this.movement;
+        this.physics.velocity = this.movement * this.speed;
 
         if (this.movement.x == 0 && this.movement.y == 0)
         {
