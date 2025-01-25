@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class GunMovement : MonoBehaviour
 {
     /* public fields */
     [SerializeField]
     public GameObject bullet_prefab;
+    public Quaternion current_direction;
     /* private fields */
     private PlayerMovement player;
-    private Quaternion current_direction;
+
     void Start()
     {
         this.player = transform.parent.GetComponent<PlayerMovement>();
@@ -36,34 +38,34 @@ public class GunMovement : MonoBehaviour
             //los 4 ifs
         }
         */
-        if (player.current_direction == "Right")
+        if (player.current_direction_string == "Right")
         {
-            transform.localPosition = new Vector2(7, 0);
-            current_direction = Quaternion.Euler(0, 0, 0);
+            transform.localPosition = new Vector2(1, 0);
+            this.current_direction = Quaternion.Euler(0, 0, 0);
         }
-        if (player.current_direction == "Left")
+        if (player.current_direction_string == "Left")
         {
-            transform.localPosition = new Vector2(-7, 0);
-            current_direction = Quaternion.Euler(0, 180, 0);
+            transform.localPosition = new Vector2(-1, 0);
+            this.current_direction = Quaternion.Euler(0, 180, 0);
         }
-        if (player.current_direction == "Up")
+        if (player.current_direction_string == "Up")
         {
-            transform.localPosition = new Vector2(0, 7);
-            current_direction = Quaternion.Euler(0, 0, 90);
+            transform.localPosition = new Vector2(0, 1);
+            this.current_direction = Quaternion.Euler(0, 0, 90);
         }
-        if (player.current_direction == "Down")
+        if (player.current_direction_string == "Down")
         {
-            transform.localPosition = new Vector2(0, -7);
-            current_direction = Quaternion.Euler(0, 0, -90);
+            transform.localPosition = new Vector2(0, -1);
+            this.current_direction = Quaternion.Euler(0, 0, -90);
         }
     }
     /* Function that hanlde the Unity event that read the Shoot action */
     public void capture_shooting(InputAction.CallbackContext context)
     {
-        Debug.Log("Fire button was pressed!");
+
         if (context.performed)
         {
-            Instantiate(this.bullet_prefab, transform.position, this.current_direction);
+            GameObject bullet = Instantiate(this.bullet_prefab, transform);
         }
     }
 }

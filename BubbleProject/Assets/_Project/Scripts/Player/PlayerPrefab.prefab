@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.16651845, y: 0.16651845, z: 0.16651845}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6953704578587152185}
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 67a0c26a4c2faf145a4d82901fb47ff9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 76b291d8df2122947956a2c26c87a116, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -174,6 +174,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: cb508a79-4d46-4b16-990e-ba97731e0033
     m_ActionName: Player/Shoot[/Keyboard/q,/Keyboard/u]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 15b2861a-f814-428f-9d5c-572495a7c8dc
+    m_ActionName: Player/PutWall[/Keyboard/e,/Keyboard/o]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -192,8 +196,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  current_direction: 
+  max_number_destructible_walls: 3
+  current_direction_string: 
+  current_direction: {x: 0, y: 0, z: 0, w: 0}
   idle: 0
+  destructible_wall_prefab: {fileID: 0}
 --- !u!50 &8431940779129077785
 Rigidbody2D:
   serializedVersion: 4
@@ -354,3 +361,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet_prefab: {fileID: 3743237681948631265, guid: 394acbcf4f23a1f46bbb5d1e774d3ed8, type: 3}
+  current_direction: {x: 0, y: 0, z: 0, w: 0}

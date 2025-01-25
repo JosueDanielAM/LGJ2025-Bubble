@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PutWall",
+                    "type": "Button",
+                    "id": "15b2861a-f814-428f-9d5c-572495a7c8dc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -154,6 +163,28 @@
                     "processors": "",
                     "groups": "player_2",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "98fc7a35-3895-41fe-8311-d5fd30eb2139",
+                    "path": "<Keyboard>/e",
+                    "interactions": "Hold(duration=5,pressPoint=0.4)",
+                    "processors": "",
+                    "groups": "player_1",
+                    "action": "PutWall",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc95674f-aafa-4cb8-bde4-dd21b998a19f",
+                    "path": "<Keyboard>/o",
+                    "interactions": "Hold(duration=5,pressPoint=0.4)",
+                    "processors": "",
+                    "groups": "player_2",
+                    "action": "PutWall",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
