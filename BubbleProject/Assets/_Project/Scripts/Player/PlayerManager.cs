@@ -9,8 +9,6 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private Transform[] spawnPoints;
 
-    private int nextPlayerIndex = 0;
-
     public void SpawnPlayer(string controlScheme, Transform spawnPoint)
     {
         var player = PlayerInput.Instantiate(

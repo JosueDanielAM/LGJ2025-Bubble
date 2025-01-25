@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 movement;
     private PlayerInput player_input;
     private Rigidbody2D physics;
+    private int score = 0;
 
     /* Unity functions */
     private void Awake()
@@ -91,5 +92,11 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void AddPoint()
+    {
+        this.score++;
+        Debug.Log($"Player {GetComponent<PlayerInput>().playerIndex} scored! Total points: {score}");
     }
 }
