@@ -5,24 +5,35 @@ using UnityEngine.InputSystem;
 
 public class FlagBehavior : MonoBehaviour
 {
-    [SerializeField]
-    private Transform[] spawnPoints;
+    [SerializeField] private int numPlayer; // Available values are 1 or 2
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
         PlayerMovement player = collider.GetComponent<PlayerMovement>();
         if (player != null)
         {
-            // Verificar si el jugador es el playerIndex = 0
             var playerInput = collider.GetComponent<PlayerInput>();
-            if (playerInput != null && playerInput.playerIndex == 0) // Solo el jugador 1
+            if (playerInput == null) 
+            { 
+                Debug.Log("No player has encoutered the flag.");
+                return;
+            }
+            if (numPlayer != 1 && numPlayer != 2)
             {
-                Debug.Log("Player 1 collected the flag!");
-                player.AddPoint(); 
-                Destroy(gameObject); 
+                Debug.Log($"Available values of player are 1 or 2, but {numPlayer} was given.");
+                return;
+            }
+
+            if (playerInput.playerIndex == numPlayer - 1)
+            {
+                Debug.Log($"Player {numPlayer} collected the flag!");
+                player.AddPoint();
+                Destroy(gameObject);
             }
             else
             {
-                Debug.Log("Only Player 1 can collect the flag.");
+                Debug.Log($"WARN: Only the player {numPlayer} can take this flag {this.gameObject.name}.");
+                return;
             }
         }
     }

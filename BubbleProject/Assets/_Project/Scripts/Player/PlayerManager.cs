@@ -3,11 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject player_prefab;
-
-    [SerializeField]
-    private Transform[] spawnPoints;
+    [SerializeField] private GameObject player_prefab;
+    [SerializeField] private Transform[] spawnPoints;
 
     private int scoreP1;
     private int scoreP2;
