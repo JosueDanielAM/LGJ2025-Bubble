@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
         this.move();
     }
     
+    /* Las buenas practicas */
     private void OnEnable()
     {
         if (player_input != null)
@@ -33,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /* Las buenas practicas */
     private void OnDisable()
     {
         if (player_input != null)
