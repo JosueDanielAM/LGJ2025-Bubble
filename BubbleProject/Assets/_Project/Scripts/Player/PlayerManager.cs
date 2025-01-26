@@ -3,10 +3,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
+    private const int N_PLAYERS = 2;
+    
     [SerializeField] private GameObject player_prefab;
     [SerializeField] private Transform[] spawnPoints;
 
-    private PlayerInput[] players = new PlayerInput[2];
+    private PlayerInput[] players = new PlayerInput[N_PLAYERS];
     private int player_index = 0;
     private int scoreP1;
     private int scoreP2;
@@ -28,5 +30,13 @@ public class PlayerManager : MonoBehaviour
     {
         this.SpawnPlayer("player_1", spawnPoints[0]);
         this.SpawnPlayer("player_2", spawnPoints[1]); 
+    }
+
+    public void MovePlayersToSpawnPoint() 
+    {
+        for (int i=0; i < N_PLAYERS; i++)
+        {
+            players[i].transform.position = spawnPoints[i].position;
+        }
     }
 }

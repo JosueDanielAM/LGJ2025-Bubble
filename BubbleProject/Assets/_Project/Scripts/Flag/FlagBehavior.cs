@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,6 +6,7 @@ public class FlagBehavior : MonoBehaviour
 {
     [SerializeField] private int numPlayer; // Available values are 0 or 2
     [SerializeField] private TextMeshProUGUI textCounter; 
+    [SerializeField] private PlayerManager playerManager; 
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -29,8 +28,9 @@ public class FlagBehavior : MonoBehaviour
 
             if (playerInput.playerIndex == numPlayer)
             {
-                player.AddPoint();
-                textCounter.text = (int.Parse(textCounter.text) + 1).ToString();
+                player.AddPoint();  // aumentar en 1 la puntuación del player
+                textCounter.text = (int.Parse(textCounter.text) + 1).ToString();  // aumentar en 1 el contador
+                playerManager.MovePlayersToSpawnPoint();  // reiniciar posición de los jugadores
 
                 Debug.Log($"Player {numPlayer} collected the flag!");
                 Destroy(gameObject);
