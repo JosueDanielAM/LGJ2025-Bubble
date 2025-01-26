@@ -1349,8 +1349,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textTimer: {fileID: 395347510}
-  initTimeMinutes: 0
-  initTimeSeconds: 15
+  initTimeMinutes: 2
+  initTimeSeconds: 0
 --- !u!225 &604578698
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -9097,6 +9097,7 @@ MonoBehaviour:
   timeHolder: {fileID: 604578698}
   p1WinMenu: {fileID: 1240330536}
   p2WinMenu: {fileID: 196499523}
+  drawMenu: {fileID: 0}
 --- !u!1 &1442105464
 GameObject:
   m_ObjectHideFlags: 0
