@@ -39,4 +39,31 @@ public class PlayerManager : MonoBehaviour
             players[i].transform.position = spawnPoints[i].position;
         }
     }
+
+    public int GetWinner()
+    {
+        int highestScore = -1;
+        int winnerIndex = -1;
+
+        for (int i = 0; i < N_PLAYERS; i++)
+        {
+            PlayerMovement playerMovement = players[i].GetComponent<PlayerMovement>();
+
+            if (playerMovement != null)
+            {
+                int playerScore = playerMovement.score;
+                if (playerScore == highestScore)
+                {
+                    return -1; // EMPATE
+                }
+                if (playerScore > highestScore)
+                {
+                    highestScore = playerScore;
+                    winnerIndex = i;
+                }
+            }
+        }
+
+        return winnerIndex;
+    }
 }

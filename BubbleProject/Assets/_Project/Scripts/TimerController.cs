@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -10,6 +10,7 @@ public class TimerController : MonoBehaviour
     [SerializeField] private int initTimeMinutes;
     [SerializeField] private int initTimeSeconds;
     private float waitSeconds;
+    public static event Action OnEndState;
 
     void Start()
     {
@@ -31,6 +32,7 @@ public class TimerController : MonoBehaviour
         else
         {
             textTimer.text = "00 : 00";
+            OnEndState?.Invoke();
         }
     }
 }
