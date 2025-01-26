@@ -1485,7 +1485,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textTimer: {fileID: 395347510}
   initTimeMinutes: 0
-  initTimeSeconds: 10
+  initTimeSeconds: 15
 --- !u!225 &604578698
 CanvasGroup:
   m_ObjectHideFlags: 0
