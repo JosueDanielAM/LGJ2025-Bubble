@@ -9,11 +9,15 @@ public class PlayerMovement : MonoBehaviour
     /* public fields */
     [SerializeField] public float speed;
     [SerializeField] public int max_number_destructible_walls = 3;
+    [SerializeField] public float stun_time = 2f;
     public string current_direction_string;
     public Quaternion current_direction;
     public bool idle;
     public GameObject destructible_wall_prefab;
     public int score = 0;
+    public bool is_stunned = false;
+    public int bubble_charges = 3;
+    public float reload_time = 1f;
 
     /* private fields */
     private Vector2 movement;
@@ -24,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private bool is_puttin_wall_pressed = false;
     private Animator animator;
 
+
     /* Unity functions */
     private void Awake()
     {
@@ -33,14 +38,21 @@ public class PlayerMovement : MonoBehaviour
     }
     void Update()
     {
-        if (!this.is_puttin_wall_pressed)
+        if (this.is_stunned)
         {
-            this.move();
+
         }
         else
         {
-            this.movement = Vector2.zero;
-            this.move();
+            if (!this.is_puttin_wall_pressed)
+            {
+                this.move();
+            }
+            else
+            {
+                this.movement = Vector2.zero;
+                this.move();
+            }
         }
     }
 
@@ -108,38 +120,41 @@ public class PlayerMovement : MonoBehaviour
             yield return null;
         }
 
-        if (Time.time - start > 0)
+        if (Time.time - start > 0 && this.bubble_charges > 0)
         {
-            is_destructible_wall_created[index] = true;
-        }
+            this.is_destructible_wall_created[index] = true;
+            this.bubble_charges--;
+            StartCoroutine(reload_bubble_charges(this.reload_time));
 
-        if (this.current_direction_string == "Right")
-        {
-            GameObject destructible_wall = Instantiate(
-                this.destructible_wall_prefab,
-                new Vector2(x_truc + 2 + index, y_truc),
-                this.current_direction);
-        }
-        if (this.current_direction_string == "Left")
-        {
-            GameObject destructible_wall = Instantiate(
-                this.destructible_wall_prefab,
-                new Vector2(x_truc - 2 - index, y_truc),
-                this.current_direction);
-        }
-        if (this.current_direction_string == "Up")
-        {
-            GameObject destructible_wall = Instantiate(
-                this.destructible_wall_prefab,
-                new Vector2(x_truc, y_truc + 2 + index),
-                this.current_direction);
-        }
-        if (this.current_direction_string == "Down")
-        {
-            GameObject destructible_wall = Instantiate(
-                this.destructible_wall_prefab,
-                new Vector2(x_truc, y_truc - 2 - index),
-                this.current_direction);
+
+            if (this.current_direction_string == "Right")
+            {
+                GameObject destructible_wall = Instantiate(
+                    this.destructible_wall_prefab,
+                    new Vector2(x_truc + 2 + index, y_truc),
+                    this.current_direction);
+            }
+            if (this.current_direction_string == "Left")
+            {
+                GameObject destructible_wall = Instantiate(
+                    this.destructible_wall_prefab,
+                    new Vector2(x_truc - 2 - index, y_truc),
+                    this.current_direction);
+            }
+            if (this.current_direction_string == "Up")
+            {
+                GameObject destructible_wall = Instantiate(
+                    this.destructible_wall_prefab,
+                    new Vector2(x_truc, y_truc + 2 + index),
+                    this.current_direction);
+            }
+            if (this.current_direction_string == "Down")
+            {
+                GameObject destructible_wall = Instantiate(
+                    this.destructible_wall_prefab,
+                    new Vector2(x_truc, y_truc - 2 - index),
+                    this.current_direction);
+            }
         }
     }
     /* Function that moves the player */
@@ -204,5 +219,32 @@ public class PlayerMovement : MonoBehaviour
         this.score++;
         Debug.Log($"Player {GetComponent<PlayerInput>().playerIndex} scored! Total points: {score}");
     }
+    /* Detects the collision with the bullets */
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.collider.CompareTag("Bullet"))
+        {
+            Debug.Log("Stunned");
+            this.is_stunned = true;
+            this.physics.velocity = Vector2.zero;
+            StartCoroutine(stun_effect(this.stun_time));
+        }
+    }
+
+    /* Wait the amount of time that during the stun effect */
+    private IEnumerator stun_effect(float stun_time)
+    {
+        yield return new WaitForSeconds(stun_time);
+
+        this.is_stunned = false;
+    }
+
+    public IEnumerator reload_bubble_charges(float reload_time)
+    {
+        yield return new WaitForSeconds(reload_time);
+
+        this.bubble_charges++;
+    }
+
 }
 
