@@ -7,14 +7,14 @@ using UnityEngine.SocialPlatforms.Impl;
 public class PlayerMovement : MonoBehaviour
 {
     /* public fields */
-    [SerializeField]
-    public float speed;
-    [SerializeField]
-    public int max_number_destructible_walls = 3;
+    [SerializeField] public float speed;
+    [SerializeField] public int max_number_destructible_walls = 3;
     public string current_direction_string;
     public Quaternion current_direction;
     public bool idle;
     public GameObject destructible_wall_prefab;
+    public int score = 0;
+
     /* private fields */
     private Vector2 movement;
     private PlayerInput player_input;
@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private Coroutine[] destructible_walls = new Coroutine[50];
     private bool[] is_destructible_wall_created = new bool[50];
     private bool is_puttin_wall_pressed = false;
-    private int score = 0;
+    
 
     /* Unity functions */
     private void Awake()

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class FlagBehavior : MonoBehaviour
 {
-    [SerializeField] private int numPlayer; // Available values are 1 or 2
+    [SerializeField] private int numPlayer; // Available values are 0 or 2
+    [SerializeField] private TextMeshProUGUI textCounter; 
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
@@ -13,21 +15,24 @@ public class FlagBehavior : MonoBehaviour
         if (player != null)
         {
             var playerInput = collider.GetComponent<PlayerInput>();
+            Debug.Log($"Player INDEX = {playerInput.playerIndex}");
             if (playerInput == null) 
             { 
                 Debug.Log("No player has encoutered the flag.");
                 return;
             }
-            if (numPlayer != 1 && numPlayer != 2)
+            if (numPlayer != 0 && numPlayer != 2)
             {
-                Debug.Log($"Available values of player are 1 or 2, but {numPlayer} was given.");
+                Debug.Log($"Available values of player are 0 or 2, but {numPlayer} was given.");
                 return;
             }
 
-            if (playerInput.playerIndex == numPlayer - 1)
+            if (playerInput.playerIndex == numPlayer)
             {
-                Debug.Log($"Player {numPlayer} collected the flag!");
                 player.AddPoint();
+                textCounter.text = (int.Parse(textCounter.text) + 1).ToString();
+
+                Debug.Log($"Player {numPlayer} collected the flag!");
                 Destroy(gameObject);
             }
             else

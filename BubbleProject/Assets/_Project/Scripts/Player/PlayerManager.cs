@@ -6,6 +6,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject player_prefab;
     [SerializeField] private Transform[] spawnPoints;
 
+    private PlayerInput[] players = new PlayerInput[2];
+    private int player_index = 0;
     private int scoreP1;
     private int scoreP2;
 
@@ -18,7 +20,10 @@ public class PlayerManager : MonoBehaviour
         );
 
         player.transform.position = spawnPoint.position;
+
+        players[player_index++] = player;
     }
+
     void Start()
     {
         this.SpawnPlayer("player_1", spawnPoints[0]);
