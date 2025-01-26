@@ -216,6 +216,9 @@ MonoBehaviour:
   idle: 0
   destructible_wall_prefab: {fileID: 2301643437867572163, guid: 04d8ad4f9a2f1a04894aab6313283728, type: 3}
   score: 0
+  is_stunned: 0
+  bubble_charges: 3
+  reload_time: 1
 --- !u!50 &8431940779129077785
 Rigidbody2D:
   serializedVersion: 4
@@ -275,8 +278,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 1}
+  m_Offset: {x: 0, y: -0.4}
+  m_Size: {x: 0.71, y: 1.04}
   m_Direction: 0
 --- !u!95 &432240855795960575
 Animator:

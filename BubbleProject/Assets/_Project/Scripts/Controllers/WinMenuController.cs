@@ -10,6 +10,7 @@ public class WinMenuController : MonoBehaviour
     [SerializeField] private CanvasGroup timeHolder;
     [SerializeField] private GameObject p1WinMenu;
     [SerializeField] private GameObject p2WinMenu;
+    [SerializeField] private GameObject drawMenu;
 
     public void EnablePanel(string player)
     {
