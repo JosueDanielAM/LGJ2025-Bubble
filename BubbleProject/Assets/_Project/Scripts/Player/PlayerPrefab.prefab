@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4071024166323171545}
   m_Layer: 0
   m_Name: PlayerPrefab
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 5414260770673440885}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.153, y: 2.492, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -175,7 +175,19 @@ MonoBehaviour:
     m_ActionId: cb508a79-4d46-4b16-990e-ba97731e0033
     m_ActionName: Player/Shoot[/Keyboard/q,/Keyboard/u]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5146809168066508091}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: capture_putting_wall
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 15b2861a-f814-428f-9d5c-572495a7c8dc
     m_ActionName: Player/PutWall[/Keyboard/e,/Keyboard/o]
   m_NeverAutoSwitchControlSchemes: 1
@@ -197,6 +209,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   max_number_destructible_walls: 3
+  stun_time: 2
   current_direction_string: 
   current_direction: {x: 0, y: 0, z: 0, w: 0}
   idle: 0
@@ -214,7 +227,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0
   m_GravityScale: 0
@@ -227,7 +240,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &4071024166323171545
 CapsuleCollider2D:
@@ -362,6 +375,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cd5ae5774b0b044cb22913ef2183842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bullet_speed: 15
   bullet_prefab: {fileID: 3743237681948631265, guid: 394acbcf4f23a1f46bbb5d1e774d3ed8, type: 3}
   current_direction: {x: 0, y: 0, z: 0, w: 0}
 --- !u!114 &8247090067982257038
