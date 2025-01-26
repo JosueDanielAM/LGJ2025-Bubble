@@ -33,7 +33,7 @@ public class FlagBehavior : MonoBehaviour
                 playerManager.MovePlayersToSpawnPoint();  // reiniciar posición de los jugadores
 
                 Debug.Log($"Player {numPlayer} collected the flag!");
-                Destroy(gameObject);
+                // nunca destruyo la bandera
             }
             else
             {

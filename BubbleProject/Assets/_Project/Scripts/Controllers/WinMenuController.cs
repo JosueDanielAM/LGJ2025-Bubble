@@ -43,13 +43,13 @@ public class WinMenuController : MonoBehaviour
 
     public void Menu()
     {
-        Debug.Log("Return to Main Menu");
+        Debug.Log("Return to Main Menu scene");
         SceneManager.LoadScene("MainMenu");
     }
 
     public void TryAgain()
     {
-        Debug.Log("Return to VSArena");
+        Debug.Log("Reload VSArena scene");
         SceneManager.LoadScene("VSArena");
     }
 }
