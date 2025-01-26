@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private Coroutine[] destructible_walls = new Coroutine[50];
     private bool[] is_destructible_wall_created = new bool[50];
     private bool is_puttin_wall_pressed = false;
-    
+    private Animator animator;
 
 
     /* Unity functions */
@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     {
         this.physics = GetComponent<Rigidbody2D>();
         this.player_input = GetComponent<PlayerInput>();
+        this.animator = GetComponent<Animator>();
     }
     void Update()
     {
@@ -164,14 +165,21 @@ public class PlayerMovement : MonoBehaviour
         if (this.movement.x == 0 && this.movement.y == 0)
         {
             this.idle = true;
+            animator.SetBool("isWalking", false);
+            animator.SetFloat("LastInputX", this.movement.x);
+            animator.SetFloat("LastInputY", this.movement.y);
         }
         else
         {
             float x_abs, y_abs;
 
+            this.idle = false;
+            animator.SetBool("isWalking", true);
+            animator.SetFloat("InputX", this.movement.x);
+            animator.SetFloat("InputY", this.movement.y);
+
             x_abs = Mathf.Abs(this.movement.x);
             y_abs = Mathf.Abs(this.movement.y);
-            this.idle = false;
 
             if (x_abs < y_abs)
             {
