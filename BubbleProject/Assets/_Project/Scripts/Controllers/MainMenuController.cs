@@ -7,7 +7,6 @@ using UnityEngine.SceneManagement;
 public class MainMenuController : MonoBehaviour
 {
     [SerializeField] private CanvasGroup tutorialPanel;
-    [SerializeField] private CanvasGroup creditsPanel;
     [SerializeField] private float fadeDuration = 1.0f;
 
     public void PlayGame()
@@ -32,7 +31,7 @@ public class MainMenuController : MonoBehaviour
     private IEnumerator ShowTutorialAndStartGame()
     {
         yield return StartCoroutine(FadeCanvasGroup(tutorialPanel, 0, 1, fadeDuration));
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(4);
         yield return StartCoroutine(FadeCanvasGroup(tutorialPanel, 1, 0, fadeDuration));
 
         // Cargar la escena del juego
@@ -57,25 +56,6 @@ public class MainMenuController : MonoBehaviour
 
         canvasGroup.blocksRaycasts = endAlpha > 0;
         canvasGroup.interactable = endAlpha > 0;
-    }
-
-    public void Credits()
-    {
-        creditsPanel.alpha = 1.0f;
-        creditsPanel.blocksRaycasts = true;
-    }
-
-    public void Back(string panel)
-    {
-        if (panel == "Credits")
-        {
-            creditsPanel.alpha = 0f;
-            creditsPanel.blocksRaycasts = false;
-        }
-        else
-        {
-            Debug.Log("Back button not working for `" + panel + "` panel");
-        }
     }
 
     public void QuitGame()
