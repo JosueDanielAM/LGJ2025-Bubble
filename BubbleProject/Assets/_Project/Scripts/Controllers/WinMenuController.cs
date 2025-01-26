@@ -5,9 +5,12 @@ public class WinMenuController : MonoBehaviour
 {
     [SerializeField] private CanvasGroup p1CounterHolder;
     [SerializeField] private CanvasGroup p2CounterHolder;
+    [SerializeField] private CanvasGroup p1BubbleHolder;
+    [SerializeField] private CanvasGroup p2BubbleHolder;
     [SerializeField] private CanvasGroup timeHolder;
     [SerializeField] private GameObject p1WinMenu;
     [SerializeField] private GameObject p2WinMenu;
+
     public void EnablePanel(string player)
     {
         Time.timeScale = 0.0f; // pausa el tiempo
@@ -39,6 +42,11 @@ public class WinMenuController : MonoBehaviour
         p1CounterHolder.blocksRaycasts = true;
         p2CounterHolder.alpha = 1f;
         p2CounterHolder.blocksRaycasts = true;
+
+        p1BubbleHolder.alpha = 1f;
+        p1BubbleHolder.blocksRaycasts = true;
+        p2BubbleHolder.alpha = 1f;
+        p2BubbleHolder.blocksRaycasts = true;
     }
 
     public void Menu()

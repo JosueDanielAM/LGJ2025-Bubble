@@ -66,4 +66,21 @@ public class PlayerManager : MonoBehaviour
 
         return winnerIndex;
     }
+
+    public (int, int) GetBubbles()
+    {
+        int[] bubbles = new int[2];
+
+        for (int i = 0; i < N_PLAYERS; i++)
+        {
+            PlayerMovement playerMovement = players[i].GetComponent<PlayerMovement>();
+
+            if (playerMovement != null)
+            {
+                bubbles[i] = playerMovement.bubble_charges;
+            }
+        }
+
+        return (bubbles[0], bubbles[1]);
+    }
 }
